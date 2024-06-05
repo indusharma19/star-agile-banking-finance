@@ -46,7 +46,7 @@ pipeline {
         stage('Add Host Key') {
             steps {
                 script {
-                     sh '''
+                    sh '''
                         mkdir -p ~/.ssh
                         chmod 700 ~/.ssh
                         ssh-keyscan -H 18.192.22.218 >> ~/.ssh/known_hosts
@@ -61,6 +61,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ansible', keyFileVariable: 'KEYFILE')]) {
                     script {
                         sh '''
+                            export ANSIBLE_HOST_KEY_CHECKING=False
                             ansible-playbook -i inventory ansible-playbook.yml --key-file $KEYFILE
                         '''
                     }
