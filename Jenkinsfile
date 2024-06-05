@@ -46,7 +46,12 @@ pipeline {
         stage('Add Host Key') {
             steps {
                 script {
-                    sh 'ssh-keyscan -H 172.31.24.94 >> ~/.ssh/known_hosts'
+                     sh '''
+                        mkdir -p ~/.ssh
+                        chmod 700 ~/.ssh
+                        ssh-keyscan -H 172.31.24.94 >> ~/.ssh/known_hosts
+                        chmod 644 ~/.ssh/known_hosts
+                    '''
                 }
             }
         }
