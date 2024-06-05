@@ -14,4 +14,4 @@
     command : sudo systemctl start docker
 
   - name: Deploy Docker Container
-    command: docker run -itd -p 8084:8081 indu1919/finance-me-bank
+    command: docker run -itd -p 8084:8081 indu1919/finance-me-bank:v1
