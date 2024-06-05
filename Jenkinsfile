@@ -43,12 +43,22 @@ pipeline {
             }
         }
 
+        stage('Add Host Key') {
+            steps {
+                script {
+                    sh 'ssh-keyscan -H 172.31.24.94 >> ~/.ssh/known_hosts'
+                }
+            }
+        }
+
         stage('Deploy with Ansible') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ansible', keyFileVariable: 'KEYFILE')]) {
-                    sh '''
-                        ansible-playbook -i inventory ansible-playbook.yml --key-file $KEYFILE
-                    '''
+                    script {
+                        sh '''
+                            ansible-playbook -i inventory ansible-playbook.yml --key-file $KEYFILE
+                        '''
+                    }
                 }
             }
         }
