@@ -49,7 +49,7 @@ pipeline {
                      sh '''
                         mkdir -p ~/.ssh
                         chmod 700 ~/.ssh
-                        ssh-keyscan -H 172.31.24.94 >> ~/.ssh/known_hosts
+                        ssh-keyscan -H 18.192.22.218 >> ~/.ssh/known_hosts
                         chmod 644 ~/.ssh/known_hosts
                     '''
                 }
