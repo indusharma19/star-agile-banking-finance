@@ -33,7 +33,7 @@
         name: finance-me-bank
         image: indu1919/finance-me-bank:v1
         ports:
-          - "8086:8081"
+          - "8087:8081"
         state: started
         restart_policy: always
       become: true
