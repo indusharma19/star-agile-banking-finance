@@ -1,2 +1,2 @@
 [prod]
-35.159.37.77 ansible_user=ubuntu
+10.0.1.110 ansible_user=ubuntu
